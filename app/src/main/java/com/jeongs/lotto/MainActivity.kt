@@ -22,10 +22,14 @@ class MainActivity : AppCompatActivity() {
         val constellation_select:CardView= findViewById(R.id.constellation_select)
         constellation_select.setOnClickListener {
             //별자리로 찾기
+            val intent =Intent(this,ResultActivity::class.java)
+            startActivity(intent)
         }
         val user_select:CardView= findViewById(R.id.user_select)
         user_select.setOnClickListener {
             //이름으로 찾기
+            val intent =Intent(this,ResultActivity::class.java)
+            startActivity(intent)
         }
 
     }
