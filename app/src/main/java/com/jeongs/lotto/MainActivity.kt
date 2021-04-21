@@ -19,8 +19,8 @@ class MainActivity : AppCompatActivity() {
         random_select.setOnClickListener {
             //랜덤 찾기
             Toast.makeText(this,"랜덤찾기 실행",Toast.LENGTH_SHORT).show()
-            val intent : Intent =Intent(this,ResultActivity::class.java)
-            startActivity(intent)
+            val nextIntent : Intent =Intent(this,ResultActivity::class.java)
+            startActivity(nextIntent)
         }
         val constellation_select:CardView= findViewById(R.id.constellation_select)
         constellation_select.setOnClickListener {
