@@ -43,8 +43,8 @@
         android:layout_marginBottom="8dp"
         android:gravity="center"
         android:maxLines="3"
-        android:text="홍길동님의로또번호입니다."
-        android:textSize="60sp"
+        android:text="홍길동님의\n로또번호입니다."
+        android:textSize="40sp"
         android:autoSizeMaxTextSize="60sp"
         android:autoSizeMinTextSize="16sp"
         android:autoSizeStepGranularity="1sp"
@@ -145,6 +145,7 @@
         app:layout_constraintTop_toTopOf="@id/guideline1" />
     <ImageView
         android:id="@+id/imageView10"
+        android:src="@drawable/money"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
@@ -153,7 +154,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/guideline4"
         app:layout_constraintStart_toStartOf="@id/guideline3"
         app:layout_constraintTop_toTopOf="@id/guideline2" />

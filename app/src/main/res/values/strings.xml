@@ -6,4 +6,11 @@
     <string name="constellation_str2">별자리로 로또번호를 생성합니다.</string>
     <string name="user_str">이름으로 번호 생성</string>
     <string name="user_str2">이름으로 로또번호를 생성합니다.</string>
+    <string name="title_activity_constellation">ConstellationActivity</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="hello_world">Hello Square World!</string>
+    <string name="title_activity_name">NameActivity</string>
 </resources>
