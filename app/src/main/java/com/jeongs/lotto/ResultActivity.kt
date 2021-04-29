@@ -1,12 +1,34 @@
 package com.jeongs.lotto
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import org.w3c.dom.Text
 import kotlin.random.Random
 
 class ResultActivity : AppCompatActivity() {
+    private final var FINISH_INTERVAL_TIME: Long = 2000
+    private var backPressedTime: Long = 0
+
+    override fun onBackPressed() {
+        if(supportFragmentManager.backStackEntryCount == 0) {
+            var tempTime = System.currentTimeMillis();
+            var intervalTime = tempTime - backPressedTime;
+            if (0 <= intervalTime && FINISH_INTERVAL_TIME >= intervalTime) {
+                super.onBackPressed();
+            } else {
+                backPressedTime = tempTime;
+                Toast.makeText(this, "'뒤로' 버튼을 한 번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show();
+                return
+            }
+        }
+        super.onBackPressed();
+    }
+
     val lottoImageStartId= R.drawable.ball_01
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -14,10 +36,22 @@ class ResultActivity : AppCompatActivity() {
 
         val resultLabel = findViewById<TextView>(R.id.resultLabel)
         //전달받은 결과 배열을 가져옴
+        val name = intent.getStringExtra("name")
         val result = intent.getIntegerArrayListExtra("result")
+        val mainGoBtn= findViewById<Button>(R.id.main_go_btn)
+
         //전달받은 결과가 있을경우 가져옴
         result?.let {
             updateLottoBallImage(result.sortedBy { it })
+        }
+        name?.let {
+            val textview: TextView = findViewById(R.id.resultLabel)
+            textview.text=name+"님의\\n로또번호입니다."
+        }
+
+        mainGoBtn.setOnClickListener {
+            val mainIntent: Intent = Intent(this,MainActivity::class.java)
+            startActivity(mainIntent)
         }
     }
     fun updateLottoBallImage(result:List<Int>){
