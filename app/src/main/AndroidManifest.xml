@@ -22,20 +22,10 @@
         <activity
             android:name=".ConstellationActivity"
             android:label="@string/title_activity_constellation">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".NameActivity"
             android:label="@string/title_activity_name">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".ResultActivity" />
         <activity android:name=".MainActivity">

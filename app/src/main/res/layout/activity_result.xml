@@ -50,7 +50,7 @@
         android:layout_marginBottom="8dp"
         android:gravity="center"
         android:maxLines="3"
-        android:text="홍길동님의\n로또번호입니다."
+        android:text="사용자님의\n로또번호입니다."
         android:textSize="40sp"
         android:autoSizeMaxTextSize="60sp"
         android:autoSizeMinTextSize="16sp"
@@ -170,6 +170,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/guideline5"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:text="처음으로"/>

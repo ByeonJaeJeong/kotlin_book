@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 
 class ConstellationActivity : AppCompatActivity() {
     private final var FINISH_INTERVAL_TIME: Long = 2000
@@ -15,7 +16,8 @@ class ConstellationActivity : AppCompatActivity() {
             var tempTime = System.currentTimeMillis();
             var intervalTime = tempTime - backPressedTime;
             if (0 <= intervalTime && FINISH_INTERVAL_TIME >= intervalTime) {
-                super.onBackPressed();
+                ActivityCompat.finishAffinity(this)
+                System.exit(0)
             } else {
                 backPressedTime = tempTime;
                 Toast.makeText(this, "'뒤로' 버튼을 한 번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show();

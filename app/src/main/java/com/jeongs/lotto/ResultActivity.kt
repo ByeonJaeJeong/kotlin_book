@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import org.w3c.dom.Text
 import kotlin.random.Random
 
@@ -19,7 +20,8 @@ class ResultActivity : AppCompatActivity() {
             var tempTime = System.currentTimeMillis();
             var intervalTime = tempTime - backPressedTime;
             if (0 <= intervalTime && FINISH_INTERVAL_TIME >= intervalTime) {
-                super.onBackPressed();
+                ActivityCompat.finishAffinity(this)
+                System.exit(0)
             } else {
                 backPressedTime = tempTime;
                 Toast.makeText(this, "'뒤로' 버튼을 한 번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show();
@@ -46,7 +48,7 @@ class ResultActivity : AppCompatActivity() {
         }
         name?.let {
             val textview: TextView = findViewById(R.id.resultLabel)
-            textview.text=name+"님의\\n로또번호입니다."
+            textview.text=name+"님의 \n로또번호입니다."
         }
 
         mainGoBtn.setOnClickListener {

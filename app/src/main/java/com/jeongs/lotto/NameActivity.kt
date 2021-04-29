@@ -8,6 +8,7 @@ import android.widget.TextView
 import android.widget.Toast
 
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 
 class NameActivity : AppCompatActivity() {
 
@@ -19,7 +20,8 @@ class NameActivity : AppCompatActivity() {
             var tempTime = System.currentTimeMillis();
             var intervalTime = tempTime - backPressedTime;
             if (0 <= intervalTime && FINISH_INTERVAL_TIME >= intervalTime) {
-                super.onBackPressed();
+                ActivityCompat.finishAffinity(this)
+                System.exit(0)
             } else {
                 backPressedTime = tempTime;
                 Toast.makeText(this, "'뒤로' 버튼을 한 번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show();
@@ -38,7 +40,7 @@ class NameActivity : AppCompatActivity() {
         val nameText: EditText= findViewById(R.id.editText)
         nextButton.setOnClickListener{
             val nextIntent : Intent = Intent(this,ResultActivity::class.java)
-            nextIntent.putExtra("name",nameText.toString())
+            nextIntent.putExtra("name",nameText.text.toString())
             nextIntent.putIntegerArrayListExtra("result",ArrayList(getShuffleLottoNumbers()))
             startActivity(nextIntent)
         }

@@ -9,6 +9,7 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.Toast
 import androidx.cardview.widget.CardView
+import androidx.core.app.ActivityCompat
 import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
@@ -20,7 +21,8 @@ class MainActivity : AppCompatActivity() {
             var tempTime = System.currentTimeMillis();
             var intervalTime = tempTime - backPressedTime;
             if (0 <= intervalTime && FINISH_INTERVAL_TIME >= intervalTime) {
-                super.onBackPressed();
+                ActivityCompat.finishAffinity(this)
+                System.exit(0)
             } else {
                 backPressedTime = tempTime;
                 Toast.makeText(this, "'뒤로' 버튼을 한 번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show();
