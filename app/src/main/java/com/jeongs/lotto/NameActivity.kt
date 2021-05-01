@@ -9,6 +9,7 @@ import android.widget.Toast
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import kotlin.random.Random
 
 class NameActivity : AppCompatActivity() {
 
@@ -41,7 +42,7 @@ class NameActivity : AppCompatActivity() {
         nextButton.setOnClickListener{
             val nextIntent : Intent = Intent(this,ResultActivity::class.java)
             nextIntent.putExtra("name",nameText.text.toString())
-            nextIntent.putIntegerArrayListExtra("result",ArrayList(getShuffleLottoNumbers()))
+            nextIntent.putIntegerArrayListExtra("result",ArrayList(getShuffleLottoNumbersFromHashCode(nameText.text.toString())))
             startActivity(nextIntent)
         }
         val backButton:Button =findViewById(R.id.backButton)
@@ -53,14 +54,15 @@ class NameActivity : AppCompatActivity() {
 
     }
 
-    fun getShuffleLottoNumbers() :MutableList<Int>{
+    fun getShuffleLottoNumbersFromHashCode(name: String) :MutableList<Int>{
         val list= mutableListOf<Int>()
 
         for(number in 1..45){
             list.add(number)
         }
-
-        list.shuffle()
+        //섞는 준을 Random(seed)를 사용하고
+        //seed 는 전달받은 이름의 hashCode 를 이용한다.
+        list.shuffle(Random(name.hashCode().toLong()))
 
         return list.subList(0,6)
     }
