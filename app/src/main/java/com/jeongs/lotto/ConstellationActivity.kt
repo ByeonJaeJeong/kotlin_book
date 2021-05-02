@@ -12,6 +12,9 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.view.get
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class ConstellationActivity : AppCompatActivity() {
     private final var FINISH_INTERVAL_TIME: Long = 2000
@@ -47,7 +50,6 @@ class ConstellationActivity : AppCompatActivity() {
         })
 
         nextButton.setOnClickListener {
-
             nextIntent.putIntegerArrayListExtra("result", ArrayList(getShuffleLottoNumbers()))
             startActivity(nextIntent)
         }
@@ -58,10 +60,10 @@ class ConstellationActivity : AppCompatActivity() {
         for(number in 1..45){
             list.add(number)
         }
+        val textView :TextView = findViewById(R.id.textView)
+        val targetString =SimpleDateFormat("yyyy-MM-dd", Locale.KOREA).format(Date())+textView.text.toString()
 
-        list.shuffle()
-
-
+        list.shuffle(Random(targetString.hashCode().toLong()))
 
         return list.subList(0,6)
     }
