@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
 
             val nextIntent : Intent =Intent(this,ResultActivity::class.java)
 
-            nextIntent.putIntegerArrayListExtra("result",ArrayList(getRandomLottoNumbers()))
+            nextIntent.putIntegerArrayListExtra("result",ArrayList(LottoNumberMaker.getRandomLottoNumbers()))
             startActivity(nextIntent)
         }
         val constellation_select:CardView= findViewById(R.id.constellation_select)
@@ -64,36 +64,4 @@ class MainActivity : AppCompatActivity() {
 
 
 
-}
-fun getRandomLottoNumber() : Int {
-
-    return Random.nextInt(45)+1
-}
-
-fun getRandomLottoNumbers(): MutableList<Int>{
-    val lottoNumbers = mutableListOf<Int>()
-
-    for (i in 1..6){
-        var number= 0
-        //중복제거
-        do {
-            number= getRandomLottoNumber()
-            //랜덤번호 추출
-        }while (lottoNumbers.contains(number))
-        //추출한 번호와 numbers 값이 없을때 까지 반복
-        lottoNumbers.add(number)
-    }
-
-    return lottoNumbers
-}
-fun getShuffleLottoNumbers() :MutableList<Int>{
-    val list= mutableListOf<Int>()
-
-    for(number in 1..45){
-        list.add(number)
-    }
-
-    list.shuffle()
-
-    return list.subList(0,6)
 }

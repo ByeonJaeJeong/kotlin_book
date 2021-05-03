@@ -42,31 +42,18 @@ class ConstellationActivity : AppCompatActivity() {
         setContentView(R.layout.activity_constellation)
         val nextButton : Button = findViewById(R.id.goResultBtn)
         val nextIntent : Intent = Intent(this,ResultActivity::class.java)
-
+        val textView :TextView = findViewById(R.id.textView)
         val datePicker:DatePicker = findViewById(R.id.datePicker)
         datePicker.setOnDateChangedListener(DatePicker.OnDateChangedListener { view, year, monthOfYear, dayOfMonth ->
-            val textView :TextView = findViewById(R.id.textView)
             textView.text=makeConstellationString(monthOfYear,dayOfMonth)
         })
 
         nextButton.setOnClickListener {
-            nextIntent.putIntegerArrayListExtra("result", ArrayList(getShuffleLottoNumbers()))
+            nextIntent.putIntegerArrayListExtra("result", ArrayList(LottoNumberMaker.getLottoNumbersFromHash(textView.text.toString())))
             startActivity(nextIntent)
         }
     }
-    fun getShuffleLottoNumbers() :MutableList<Int>{
-        val list= mutableListOf<Int>()
 
-        for(number in 1..45){
-            list.add(number)
-        }
-        val textView :TextView = findViewById(R.id.textView)
-        val targetString =SimpleDateFormat("yyyy-MM-dd", Locale.KOREA).format(Date())+textView.text.toString()
-
-        list.shuffle(Random(targetString.hashCode().toLong()))
-
-        return list.subList(0,6)
-    }
     fun makeConstellationString(month: Int, day: Int):String{
         var target= "${month+1}+${String.format("%02d",day)}".toInt()
         when(dateNumber){
